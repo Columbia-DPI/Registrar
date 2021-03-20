@@ -19,6 +19,26 @@ class Db:
         print(DATABASE_URL)
         return Db(conn)
 
+    def insert_requirement(self, requirement):
+        uid = -1
+        req = tuple(requirement.values())
+        req_str = "'" + "', '".join(user_bio) + "'"
+        
+        sql = 'insert into major_requirements (requirement, dept, code, function, further_spec) values (%s)' % (req_str,)
+        
+        try:
+            self.conn.cursor().execute(sql, (req,))
+            self.conn.commit()
+            sql2 = 'select max(uid) as latest_requirement from major_requirements' 
+            cur2 = self.conn.cursor()
+            cur2.execute(sql2)
+            uid = int(cur2.fetchone()[0])
+            cur2.close()
+        except Exception as e:
+            print('failed to insert into major_requirements: ' + str(e))
+            return -1 
+        return uid
+        
     # sample function: need to modify format
     # insert_user: dictionary
     # need to check for valid class and school
