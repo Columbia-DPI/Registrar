@@ -115,8 +115,8 @@ def search_events():
 
 
 
-def index():
-    #return "Hello World!"
+def index(path):
+    return "Hello World!"
 
-    return render_template("index.html", token="dumbedeedoo")
+    #return render_template("index.html", token="dumbedeedoo")
 flask_backend.run(debug=True, use_reloader=False)
