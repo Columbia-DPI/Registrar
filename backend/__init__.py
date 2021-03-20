@@ -102,17 +102,8 @@ def search_events():
     return events
 
 
-
-
-
-# Begin page-serve routes
-@flask_backend.route("/")
-@flask_backend.route("/login")
-@flask_backend.route("/allevents")
-@flask_backend.route("/home")
-@flask_backend.route("/profile")
+@flask_backend.route("/", defaults={'path': ''})
 @flask_backend.route("/<path:path>")
-
 
 
 def index(path):

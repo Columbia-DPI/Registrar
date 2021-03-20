@@ -47,3 +47,20 @@ class Db:
 
 
     #
+    def insert_course(self, bio):
+        cid = -1
+        course_info = tuple(bio.values())
+        course_str = "'" + "', '".join(course_info) + "'"
+        sql = "insert into courses (dept, code, sect, year_sem, description, link) values (%s)" %(course_str,)
+        try:
+            self.conn.cursor().execute(sql, (course_str,))
+            self.conn.commit()
+            sql2 = 'select max(cid) as latest_course from courses' 
+            cur2 = self.conn.cursor()
+            cur2.execute(sql2)
+            cid = int(cur2.fetchone()[0])
+            cur2.close()
+        except Exception as e:
+            print('failed to insert into course: ' + str(e))
+            return -1
+        return cid
