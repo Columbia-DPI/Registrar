@@ -39,11 +39,21 @@
         
 """
 
+# TEST insert_requirement
+# sample user string input
+# {"requirement": "", "dept": , "code": , "function": "", "further_spec": ""}
+r1 =  {"requirement": "CS", "dept": "COMS" , "code": "COMS_W1004", "function": "major", "further_spec": "CC"}
+r2 =  {"requirement": "CS", "dept": "COMS" , "code": "COMS_W3134", "function": "major", "further_spec": "CC"}
+r3 =  {"requirement": "CS", "dept": "COMS" , "code": "COMS_W3137", "function": "major", "further_spec": "CC"}
+reqs =[r1,r2,r3]
+for req in reqs:
+    print(sess_db.insert_requirement(req))
 
 
 # TEST insert_user 
 # sample user string input
 # {"name": "", "UNI": , "school":, "email":, "year":}
+
 u1 = {"name": "user1", "UNI":"u1", "school":"CC", "email":"confuseduser1@columbia.edu","year":"1111"}
 u2 = {"name": "user2", "UNI":"u2", "school":"CC", "email":"happyuser2@columbia.edu", "year":"2222"}
 u3 = {"name": "user3", "UNI":"u3", "school":"SEAS", "email":"saduser3@columbia.edu", "year":"2222"}
